@@ -1,5 +1,5 @@
 import Carousel from 'react-bootstrap/Carousel';
-import { images } from '../../utils/conts';
+import { images } from '../../utils/consts';
 
 
 function ProductCarousel() {

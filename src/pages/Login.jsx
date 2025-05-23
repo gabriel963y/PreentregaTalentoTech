@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Alert, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { user } from '../utils/conts';
+import { user } from '../utils/consts';
 
 const Login = () => {
   const [email, setEmail] = useState('');

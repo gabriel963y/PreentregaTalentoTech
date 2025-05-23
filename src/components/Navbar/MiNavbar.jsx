@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MdFavorite } from 'react-icons/md';
 import { MdShoppingBasket } from 'react-icons/md';
 import Navitem from './NavItem'
-import { category, MENU_DATA, } from '../../utils/conts';
+import { category, MENU_DATA, } from '../../utils/consts';
 import BrandLocation from './BrandLocation';
 import { useEffect, useState } from 'react';
 import { FaRegUserCircle } from 'react-icons/fa';
