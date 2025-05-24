@@ -1,8 +1,9 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
 
 const Ofertas = () => {
   return (
-    <div>Ofertas</div>
+    <Container>Ofertas!</Container>
   )
 }
 

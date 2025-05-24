@@ -51,15 +51,6 @@ export const MENU_DATA = [
   },
 ]
 
-export const category = [
-  "Vehículos",
-  "Tecnología",
-  "Herramientas",
-  "Moda",
-  "Servicios",
-  "Ver más categorías",
-]
-
 export const user = {
   email: "test@lean.com",
   password: "123456"

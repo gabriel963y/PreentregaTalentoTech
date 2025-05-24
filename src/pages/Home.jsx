@@ -4,7 +4,6 @@ import ShopContent from "../components/ShopContent/ShopContent"
 
 const Home = ({favorite, setFavorite, shop, setShop}) => {
 
-
   return (
     <main>
       <MiCarousel />

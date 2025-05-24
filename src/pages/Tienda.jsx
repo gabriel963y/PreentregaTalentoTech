@@ -1,8 +1,9 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
 
 const Tienda = () => {
   return (
-    <div>Tienda</div>
+    <Container>Tienda</Container>
   )
 }
 

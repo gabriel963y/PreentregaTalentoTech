@@ -1,9 +1,11 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
 
 const Destacados = () => {
   return (
-    <div>Destacados</div>
+    <Container>destacados</Container>
   )
+
 }
 
 export default Destacados

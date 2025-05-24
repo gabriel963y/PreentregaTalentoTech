@@ -19,7 +19,7 @@ const Login = () => {
     }
 
     if (email === user.email && password === user.password) {
-      localStorage.setItem('token', true)
+      localStorage.setItem('token', 'true')
       navigate('/')
     } else {
       setError('Email o contraseña incorrectos.');

@@ -1,13 +1,14 @@
-import MiNavbar from '../Navbar/MiNavbar'
+
+import MyNavbar from "../Navbar/MyNavbar"
 import Topbar from "./Topbar"
 
-const Header = ({favorite, shop}) => {
+const Header = ({favorite, shop, setShop}) => {
 
 
   return (
     <div>
       <Topbar />
-      <MiNavbar favorite={favorite} shop={shop}/>
+      <MyNavbar favorite={favorite} shop={shop} setShop={setShop}/>
     </div>
   )
 }

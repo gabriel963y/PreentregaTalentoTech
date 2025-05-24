@@ -3,17 +3,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import { MdFavorite } from 'react-icons/md';
 import { MdShoppingBasket } from 'react-icons/md';
 import Navitem from './NavItem'
-import { category, MENU_DATA, } from '../../utils/consts';
+import { MENU_DATA, } from '../../utils/consts';
 import BrandLocation from './BrandLocation';
 import { useEffect, useState } from 'react';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { IoLogOut, IoLogIn } from 'react-icons/io5';
+import Swal from 'sweetalert2';
+import useProducts from '../../hooks/useProducts';
 
-function MiNavbar({ favorite, shop }) {
+function MyNavbar({ favorite, shop, setShop }) {
 
-  const [user, setUser] = useState(localStorage.getItem('token') === 'true')
+  const [user, setUser] = useState()
   const [showShop, setShowShop] = useState(false)
   const [showFavorites, setShowFavorites] = useState(false)
+  const { category } = useProducts()
+
 
   const navigate = useNavigate()
 
@@ -25,9 +29,6 @@ function MiNavbar({ favorite, shop }) {
     window.addEventListener('storage', handleStorageChange);
     return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
-
-
-
 
   const handleAuthClick = () => {
     if (user) {
@@ -44,6 +45,17 @@ function MiNavbar({ favorite, shop }) {
     total += shop[i].price
   }
 
+  const handleBuy = () => {
+    setShop([])
+    Swal.fire({
+      icon: 'success',
+      title: '¡Compra realizada con éxito!',
+      text: 'Gracias por su compra. Recibirá un correo con los detalles de su pedido.',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Confirmar'
+    })
+  }
+
   return (
     <>
       <Navbar expand='lg' className='shadow-sm border-bottom '>
@@ -56,14 +68,16 @@ function MiNavbar({ favorite, shop }) {
             <Nav className='ms-auto align-items-lg-center'>
               <div className='d-flex gap-1 flex-column flex-lg-row'>
                 {MENU_DATA.map(menu => (
-                  <Navitem key={menu.to} to={menu.to} icon={menu.icon} children={menu.children} className='me-3' />
+                  <Navitem key={menu} to={menu.to} icon={menu.icon} children={menu.children} className='me-3' />
                 ))}
               </div>
 
               <NavDropdown title='Categorías' id='basic-nav-dropdown' className='mb-3 mb-lg-0'>
-                {category.map(item => (
-                  <NavDropdown.Item key={item}>{item}</NavDropdown.Item>
-                ))}
+                {
+                  category.map(cate => (
+                    <NavDropdown.Item key={cate}>{cate}</NavDropdown.Item>
+                  ))
+                }
               </NavDropdown>
             </Nav>
             <Nav className='ms-auto'>
@@ -107,19 +121,19 @@ function MiNavbar({ favorite, shop }) {
             <p>No hay productos para mostrar</p>
           ) : (
             <>
-            <Row>
-              {favorite.map(item => (
-                <Col key={item.id} xs={6} className='mb-3'>
-                  <Card className='p-2 h-100'>
-                    <Card.Img variant='top' src={item.image} alt={item.title} />
-                    <Card.Body>
-                      <Card.Title >{item.title}</Card.Title>
-                      <Card.Text className='text-muted'>{item.price}</Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
+              <Row>
+                {favorite.map(item => (
+                  <Col key={item.id} xs={6} className='mb-3'>
+                    <Card className='p-2 h-100'>
+                      <Card.Img variant='top' src={item.image} alt={item.title} />
+                      <Card.Body>
+                        <Card.Title >{item.title}</Card.Title>
+                        <Card.Text className='text-muted'>{item.price}</Card.Text>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
             </>
           )}
         </Offcanvas.Body>
@@ -153,7 +167,7 @@ function MiNavbar({ favorite, shop }) {
                 <div className='d-flex justify-content-between fw-bold align-items-center'>
                   <span>Total:</span>
                   <span>${total.toFixed(2)}</span>
-                  <Button>Realizar compra</Button>
+                  <Button onClick={handleBuy}>Realizar compra</Button>
                 </div>
               </Row>
             </>
@@ -164,4 +178,4 @@ function MiNavbar({ favorite, shop }) {
   );
 }
 
-export default MiNavbar;
+export default MyNavbar;
