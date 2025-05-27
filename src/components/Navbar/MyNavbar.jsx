@@ -68,7 +68,7 @@ function MyNavbar({ favorite, shop, setShop }) {
             <Nav className='ms-auto align-items-lg-center'>
               <div className='d-flex gap-1 flex-column flex-lg-row'>
                 {MENU_DATA.map(menu => (
-                  <Navitem key={menu} to={menu.to} icon={menu.icon} children={menu.children} className='me-3' />
+                  <Navitem key={menu.to} to={menu.to} icon={menu.icon} children={menu.children} className='me-3' />
                 ))}
               </div>
 
