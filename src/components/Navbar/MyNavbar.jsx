@@ -10,6 +10,7 @@ import { FaRegUserCircle } from 'react-icons/fa';
 import { IoLogOut, IoLogIn } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 import useProducts from '../../hooks/useProducts';
+import MyCard from '../Card/MyCard';
 
 function MyNavbar({ favorite, shop, setShop }) {
 
@@ -55,6 +56,7 @@ function MyNavbar({ favorite, shop, setShop }) {
       confirmButtonText: 'Confirmar'
     })
   }
+
 
   return (
     <>
@@ -112,7 +114,7 @@ function MyNavbar({ favorite, shop, setShop }) {
       </Navbar>
 
       {/* Favorite */}
-      <Offcanvas show={showFavorites} onHide={() => setShowFavorites(false)} placement='end'>
+      <Offcanvas show={showFavorites} onHide={() => setShowFavorites(false)} placement='end' >
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Favoritos</Offcanvas.Title>
         </Offcanvas.Header>
@@ -123,14 +125,8 @@ function MyNavbar({ favorite, shop, setShop }) {
             <>
               <Row>
                 {favorite.map(item => (
-                  <Col key={item.id} xs={6} className='mb-3'>
-                    <Card className='p-2 h-100'>
-                      <Card.Img variant='top' src={item.image} alt={item.title} />
-                      <Card.Body>
-                        <Card.Title >{item.title}</Card.Title>
-                        <Card.Text className='text-muted'>{item.price}</Card.Text>
-                      </Card.Body>
-                    </Card>
+                  <Col key={item.id} sm={6} className='mb-3'>
+                    <MyCard image={item.image} title={item.title} price={item.price} />
                   </Col>
                 ))}
               </Row>
@@ -144,21 +140,15 @@ function MyNavbar({ favorite, shop, setShop }) {
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Carrito de compra</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>
+        <Offcanvas.Body >
           {shop.length === 0 ? (
             <p>No hay productos para mostrar</p>
           ) : (
             <>
               <Row>
                 {shop.map(item => (
-                  <Col key={item.id} xs={6} className='mb-3'>
-                    <Card className='p-2 h-100'>
-                      <Card.Img variant='top' src={item.image} alt={item.title} />
-                      <Card.Body>
-                        <Card.Title className='fs-6'>{item.title}</Card.Title>
-                        <Card.Text className='text-muted'>${item.price}</Card.Text>
-                      </Card.Body>
-                    </Card>
+                  <Col key={item.id} sm={6} className='mb-3'>
+                    <MyCard image={item.image} title={item.title} price={item.price} />
                   </Col>
                 ))}
               </Row>
