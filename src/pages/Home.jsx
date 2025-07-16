@@ -1,14 +1,25 @@
 
-import MiCarousel from '../components/carousel/MiCarousel'
-import ShopContent from "../components/ShopContent/ShopContent"
+import { Helmet } from 'react-helmet'
+import MyCarousel from '../components/carousel/MyCarousel'
+import Categories from '../components/Categories/Categories'
+import ShopContent from '../components/ShopContent/ShopContent'
 
-const Home = ({favorite, setFavorite, shop, setShop}) => {
+
+const Home = () => {
 
   return (
-    <main>
-      <MiCarousel />
-      <ShopContent favorite={favorite} setFavorite={setFavorite} shop={shop} setShop={setShop} />
-    </main>
+    <>
+      <Helmet>
+        <title>LeanShop | Inicio</title>
+        <meta name='description' content='Descubrí las mejores ofertas en LeanShop' />
+        <link rel="canonical" href="www.leanshop.com" />
+      </Helmet>
+      <main>
+        <MyCarousel />
+        <Categories />
+        <ShopContent />
+      </main>
+    </>
   )
 }
 

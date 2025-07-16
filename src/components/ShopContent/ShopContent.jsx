@@ -1,81 +1,39 @@
-import { Container, Row } from 'react-bootstrap'
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
-import ProductCard from './ProductCard';
+import { Container, Pagination, Row } from 'react-bootstrap'
+import ProductCard from './ProductCard'
 import useProducts from '../../hooks/useProducts'
+import { useEffect, useState } from 'react'
 
-const ShopContent = ({ setFavorite, favorite, setShop, shop }) => {
 
+const ShopContent = () => {
   const { products } = useProducts()
+  const [currentPage, setCurrenPage] = useState(1)
+  const itemsPerPage = 8
 
-  const toggleFavorite = (product) => {
-    setFavorite(prev => {
-      const exists = prev.some(fav => fav.id === product.id)
-      if (exists) {
-        Swal.fire({
-          toast: true,
-          position: 'bottom-left',
-          icon: 'error',
-          title: 'Producto eliminado de favoritos',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const currentProducts = products.slice(startIndex, endIndex)
+  const totalPages = Math.ceil(products.length / itemsPerPage)
 
-        })
-        return prev.filter(fav => fav.id !== product.id)
+  useEffect(() => {
+    setCurrenPage(1)
+  }, [products])
 
-      } else {
-        Swal.fire({
-          toast: true,
-          position: 'bottom-left',
-          icon: 'success',
-          title: 'Producto agregado a favoritos',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true
-        })
-        return [...prev, product]
-      }
-    })
-  }
-
-  const addToShop = (product) => {
-    setShop(prev => {
-      const exists = prev.some(prod => prod.id === product.id)
-      if (exists) {
-        Swal.fire({
-          toast: true,
-          position: 'bottom-left',
-          icon: 'error',
-          title: 'Producto eliminado del carrito de compras',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-        })
-        return prev.filter(prod => prod.id !== product.id)
-      } else {
-        Swal.fire({
-          toast: true,
-          position: 'bottom-left',
-          icon: 'success',
-          title: 'Producto agregado al carrito de compras',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true
-        })
-        return [...prev, product]
-      }
-    })
-  }
 
   return (
     <Container className='py-3'>
-      <h2 className='m-3'>Todos los productos</h2>
+      <h2 className='m-3 text-center'>Todos los productos</h2>
       <Row className='g-4'>
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} favorite={favorite} toggleFavorite={toggleFavorite} addToShop={addToShop} shop={shop} />
+        {currentProducts.map((product) => (
+          <ProductCard product={product} key={product.id} />
         ))}
       </Row>
+      <Pagination className='justify-content-center mt-4'>
+        <Pagination.Prev disabled={currentPage === 1} onClick={() => setCurrenPage(prev => Math.max(prev - 1, 1))} />
+        {[...Array(totalPages)].map((_, index) => (
+          <Pagination.Item key={index} active={index + 1 === currentPage} onClick={() => setCurrenPage(index + 1)}>{index + 1}</Pagination.Item>
+        ))}
+        <Pagination.Next disabled={currentPage === totalPages} onClick={() => setCurrenPage(prev => Math.min(prev + 1, totalPages))} />
+      </Pagination>
     </Container>
   )
 }
