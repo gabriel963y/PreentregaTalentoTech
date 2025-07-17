@@ -1,5 +1,9 @@
 #  ✨ LeanShop - entrega final Talento Tech
 
+---
+#Demo 📍 [Click para ver demo](https://leanshop-tt.vercel.app/)
+---
+
 ## 🚀 Funcionalidades Claves
 ### 🛒 **Gestión de Carrito y Autenticación de Usuarios**
 Crée un carrito de compras dinámico, que usa **Zustand** para que puedas agregar, eliminar y vaciar productos sin perder el estado de tu compra. Implementé un sistema de autenticación de usuarios. Solo los usuarios que inician sesión pueden acceder a su carrito y a otras secciones privadas. ¡Tus datos están protegidos!
