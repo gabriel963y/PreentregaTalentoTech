@@ -1,7 +1,7 @@
 #  ✨ LeanShop - entrega final Talento Tech
 
 ---
-#Demo 📍 [Click para ver demo](https://leanshop-tt.vercel.app/)
+##Demo 📍 [Click para ver demo](https://leanshop-tt.vercel.app/)
 ---
 
 ## 🚀 Funcionalidades Claves
