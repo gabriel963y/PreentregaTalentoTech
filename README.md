@@ -20,8 +20,7 @@ La parte más emocionante: una sección de gestión de productos completa. Acá 
 * **React Icons:** Para iconos de alta calidad.
 * **React Toastify:** Para notificaciones de usuario.
 * **React Helmet:** Para optimización de SEO.
-
-* 
+ 
 ## ⚙️ Cómo Poner en Marcha el Proyecto
 1.  **Clonar el repositorio:**
     ```bash
