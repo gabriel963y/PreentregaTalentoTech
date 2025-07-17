@@ -56,7 +56,7 @@ const ProductCard = ({ product }) => {
                         style={{ height: '200px', objectFit: 'contain', padding: '1rem' }}
                     />
                 </div>
-
+                <hr />
                 <Card.Body className="d-flex flex-column justify-content-between">
                     <div>
                         <Card.Title className="text-truncate" style={{ fontSize: '0.95rem', fontWeight: 'bold' }}>

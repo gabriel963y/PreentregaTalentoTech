@@ -47,7 +47,7 @@ const MyProducts = () => {
     try {
       await deleteProduct(id)
       setProducts((prev) => prev.filter((p) => p.id !== id))
-      toast.success('Producto eliminado correctamente.', {
+      toast.error('Producto eliminado correctamente.', {
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true
